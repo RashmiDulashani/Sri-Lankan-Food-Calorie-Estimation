@@ -108,6 +108,6 @@ under identical conditions.
 |---|---|
 | Milestone 1 - Research Proposal | [milestone1_research_proposal.pdf](docs/milestone1_research_proposal.pdf) |
 | Milestone 2 - Methodology & Data Description | [milestone2_report.pdf](docs/milestone2_report.pdf) |
-| Preprocessing Pipeline | [preprocessing_pipeline.png](docs/preprocessing_pipeline.svg) |
-| System Architecture Diagram | [architecture_diagram.png](docs/architecture_diagram.svg) |
-| Baseline Diagram | [baseline_diagram.png](docs/baseline_diagram.svg) |
+| Preprocessing Pipeline | [preprocessing_pipeline.svg](docs/preprocessing_pipeline.svg) |
+| System Architecture Diagram | [architecture_diagram.svg](docs/architecture_diagram.svg) |
+| Baseline Diagram | [baseline_diagram.svg](docs/baseline_diagram.svg) |
