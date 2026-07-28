@@ -1,0 +1,124 @@
+<svg viewBox="0 0 1000 940" xmlns="http://www.w3.org/2000/svg" font-family="Calibri, Arial, sans-serif">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#37474F"/>
+    </marker>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.16"/>
+    </filter>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1F3864"/>
+      <stop offset="1" stop-color="#2E75B6"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1000" height="940" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <rect x="30" y="16" width="880" height="46" rx="8" fill="url(#titleGrad)" filter="url(#sh)"/>
+  <text x="470" y="45" text-anchor="middle" font-size="17.5" font-weight="bold" fill="#FFFFFF">Stratified 5-Fold Cross-Validation Strategy</text>
+
+  <!-- Full dataset bar -->
+  <text x="470" y="88" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#333">Full Dataset &#8212; Stratified by Primary Dish Class</text>
+  <g id="foldbar">
+    <rect x="70" y="98" width="160" height="46" rx="6" fill="#D9E2F3" stroke="#2E4E9E" stroke-width="1.3"/>
+    <rect x="230" y="98" width="160" height="46" rx="0" fill="#D9E2F3" stroke="#2E4E9E" stroke-width="1.3"/>
+    <rect x="390" y="98" width="160" height="46" rx="0" fill="#D9E2F3" stroke="#2E4E9E" stroke-width="1.3"/>
+    <rect x="550" y="98" width="160" height="46" rx="0" fill="#D9E2F3" stroke="#2E4E9E" stroke-width="1.3"/>
+    <rect x="710" y="98" width="160" height="46" rx="6" fill="#D9E2F3" stroke="#2E4E9E" stroke-width="1.3"/>
+    <text x="150" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F3864">Fold 1</text>
+    <text x="310" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F3864">Fold 2</text>
+    <text x="470" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F3864">Fold 3</text>
+    <text x="630" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F3864">Fold 4</text>
+    <text x="790" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F3864">Fold 5</text>
+  </g>
+
+  <line x1="470" y1="144" x2="470" y2="172" stroke="#37474F" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- Iteration rows -->
+  <text x="470" y="192" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#333">5 Training / Validation Iterations</text>
+
+  <!-- generic function replicated manually for 5 rows -->
+  <!-- Row template: x positions same as fold bar: 70,230,390,550,710 each width 160 (minus small gaps) -->
+
+  <!-- Iteration 1: validation = fold 1 -->
+  <g>
+    <text x="45" y="234" text-anchor="end" font-size="11.5" font-weight="bold" fill="#1F3864">Iter. 1</text>
+    <rect x="70" y="210" width="150" height="36" rx="5" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.3"/>
+    <rect x="230" y="210" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="390" y="210" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="550" y="210" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="710" y="210" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <text x="890" y="233" text-anchor="start" font-size="10.5" fill="#666">Val: Fold 1</text>
+  </g>
+
+  <!-- Iteration 2: validation = fold 2 -->
+  <g>
+    <text x="45" y="284" text-anchor="end" font-size="11.5" font-weight="bold" fill="#1F3864">Iter. 2</text>
+    <rect x="70" y="260" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="230" y="260" width="150" height="36" rx="5" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.3"/>
+    <rect x="390" y="260" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="550" y="260" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="710" y="260" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <text x="890" y="283" text-anchor="start" font-size="10.5" fill="#666">Val: Fold 2</text>
+  </g>
+
+  <!-- Iteration 3: validation = fold 3 -->
+  <g>
+    <text x="45" y="334" text-anchor="end" font-size="11.5" font-weight="bold" fill="#1F3864">Iter. 3</text>
+    <rect x="70" y="310" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="230" y="310" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="390" y="310" width="150" height="36" rx="5" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.3"/>
+    <rect x="550" y="310" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="710" y="310" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <text x="890" y="333" text-anchor="start" font-size="10.5" fill="#666">Val: Fold 3</text>
+  </g>
+
+  <!-- Iteration 4: validation = fold 4 -->
+  <g>
+    <text x="45" y="384" text-anchor="end" font-size="11.5" font-weight="bold" fill="#1F3864">Iter. 4</text>
+    <rect x="70" y="360" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="230" y="360" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="390" y="360" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="550" y="360" width="150" height="36" rx="5" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.3"/>
+    <rect x="710" y="360" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <text x="890" y="383" text-anchor="start" font-size="10.5" fill="#666">Val: Fold 4</text>
+  </g>
+
+  <!-- Iteration 5: validation = fold 5 -->
+  <g>
+    <text x="45" y="434" text-anchor="end" font-size="11.5" font-weight="bold" fill="#1F3864">Iter. 5</text>
+    <rect x="70" y="410" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="230" y="410" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="390" y="410" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="550" y="410" width="150" height="36" rx="5" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.3"/>
+    <rect x="710" y="410" width="150" height="36" rx="5" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.3"/>
+    <text x="890" y="433" text-anchor="start" font-size="10.5" fill="#666">Val: Fold 5</text>
+  </g>
+
+  <!-- Legend -->
+  <rect x="70" y="462" width="22" height="16" rx="3" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.2"/>
+  <text x="98" y="475" font-size="11" fill="#333">Training folds (4 of 5)</text>
+  <rect x="260" y="462" width="22" height="16" rx="3" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.2"/>
+  <text x="288" y="475" font-size="11" fill="#333">Validation fold (1 of 5)</text>
+
+  <line x1="470" y1="494" x2="470" y2="524" stroke="#37474F" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- Per-fold metric box -->
+  <rect x="270" y="526" width="400" height="80" rx="10" fill="#FFF2CC" stroke="#BF8F00" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="470" y="554" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#7F6000">Per-Fold Evaluation</text>
+  <text x="470" y="574" text-anchor="middle" font-size="11" fill="#333">Macro F1, AUC-ROC, MAE, MAPE</text>
+  <text x="470" y="590" text-anchor="middle" font-size="11" fill="#333">computed on each held-out fold</text>
+
+  <line x1="470" y1="606" x2="470" y2="636" stroke="#37474F" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- Final aggregate box -->
+  <rect x="240" y="638" width="460" height="110" rx="10" fill="#E2EFDA" stroke="#548235" stroke-width="2" filter="url(#sh)"/>
+  <text x="470" y="668" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#375623">Aggregate Reported Performance</text>
+  <text x="470" y="692" text-anchor="middle" font-size="11.5" fill="#333">Mean &#177; Standard Deviation of each metric</text>
+  <text x="470" y="710" text-anchor="middle" font-size="11.5" fill="#333">across all 5 folds</text>
+  <text x="470" y="732" text-anchor="middle" font-size="10.5" font-style="italic" fill="#4C6B3D">Reduces the influence of any single data split</text>
+
+  <text x="470" y="782" text-anchor="middle" font-size="10.5" font-style="italic" fill="#666">Fig. 4 &#8212; Stratified 5-fold cross-validation: the dataset is split into 5 class-balanced folds; each</text>
+  <text x="470" y="800" text-anchor="middle" font-size="10.5" font-style="italic" fill="#666">fold serves once as the validation set while the remaining four are used for training, and results</text>
+  <text x="470" y="818" text-anchor="middle" font-size="10.5" font-style="italic" fill="#666">are reported as the mean and standard deviation across all five iterations.</text>
+</svg>

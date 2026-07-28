@@ -1,0 +1,105 @@
+<svg viewBox="0 0 980 900" xmlns="http://www.w3.org/2000/svg" font-family="Calibri, Arial, sans-serif">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#37474F"/>
+    </marker>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.16"/>
+    </filter>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5B5B5B"/>
+      <stop offset="1" stop-color="#7F7F7F"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="980" height="900" fill="#FFFFFF"/>
+
+  <!-- Title banner (grey tone signals "baseline", distinct from the blue proposed-model banner) -->
+  <rect x="30" y="16" width="920" height="46" rx="8" fill="url(#titleGrad)" filter="url(#sh)"/>
+  <text x="490" y="45" text-anchor="middle" font-size="18" font-weight="bold" fill="#FFFFFF">Baseline Model: ResNet-50 Transfer Learning Pipeline</text>
+
+  <!-- Input image icon (identical to proposed-model diagram, for direct comparison) -->
+  <g transform="translate(455,80)">
+    <rect x="0" y="0" width="70" height="110" rx="10" fill="#2B2B2B"/>
+    <rect x="6" y="8" width="58" height="88" rx="3" fill="#FFFFFF"/>
+    <circle cx="35" cy="52" r="24" fill="#F5E6C8" stroke="#C9A24B" stroke-width="1.5"/>
+    <circle cx="26" cy="45" r="6" fill="#8CB369"/>
+    <circle cx="45" cy="48" r="7" fill="#C1502E"/>
+    <circle cx="35" cy="62" r="5" fill="#E6B800"/>
+    <circle cx="35" cy="100" r="3" fill="#555"/>
+  </g>
+  <text x="490" y="204" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1F3864">Input Food Image</text>
+  <text x="490" y="220" text-anchor="middle" font-size="10.5" fill="#666">(same dataset and procedure as proposed model)</text>
+
+  <!-- Row 2: Preprocessing + ResNet-50 Backbone -->
+  <rect x="40" y="252" width="240" height="120" rx="10" fill="#DDEBF7" stroke="#2E75B6" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="160" y="284" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1F3864">Image</text>
+  <text x="160" y="302" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1F3864">Preprocessing</text>
+  <text x="160" y="326" text-anchor="middle" font-size="11" fill="#333">Resize, normalise,</text>
+  <text x="160" y="342" text-anchor="middle" font-size="11" fill="#333">augment (identical to</text>
+  <text x="160" y="358" text-anchor="middle" font-size="11" fill="#333">proposed-model pipeline)</text>
+
+  <rect x="370" y="252" width="240" height="120" rx="10" fill="#E2EFDA" stroke="#548235" stroke-width="2" filter="url(#sh)"/>
+  <text x="490" y="284" text-anchor="middle" font-size="14" font-weight="bold" fill="#375623">Feature Extraction</text>
+  <text x="490" y="304" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#375623">ResNet-50 Backbone</text>
+  <text x="490" y="326" text-anchor="middle" font-size="10.5" fill="#333">ImageNet pre-trained, fine-tuned</text>
+  <text x="490" y="342" text-anchor="middle" font-size="10.5" fill="#333">on the same local Sri Lankan</text>
+  <text x="490" y="358" text-anchor="middle" font-size="10.5" fill="#333">food dataset as the proposed model</text>
+
+  <!-- Row 3: Single classification head (centre) + greyed-out "no portion head" note (left) -->
+  <rect x="40" y="440" width="240" height="130" rx="10" fill="#F2F2F2" stroke="#9E9E9E" stroke-width="1.5" stroke-dasharray="7,4"/>
+  <text x="160" y="480" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#6E6E6E">No Portion</text>
+  <text x="160" y="498" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#6E6E6E">Estimation Branch</text>
+  <text x="160" y="524" text-anchor="middle" font-size="10.5" fill="#7A7A7A">Baseline has a single</text>
+  <text x="160" y="540" text-anchor="middle" font-size="10.5" fill="#7A7A7A">head only &#8212; portion size</text>
+  <text x="160" y="556" text-anchor="middle" font-size="10.5" fill="#7A7A7A">of the meal is not estimated</text>
+
+  <rect x="370" y="440" width="240" height="130" rx="10" fill="#EAD1DC" stroke="#A64D79" stroke-width="2" filter="url(#sh)"/>
+  <text x="490" y="470" text-anchor="middle" font-size="14" font-weight="bold" fill="#5B2A47">Multi-Label</text>
+  <text x="490" y="488" text-anchor="middle" font-size="14" font-weight="bold" fill="#5B2A47">Classification Head</text>
+  <text x="490" y="510" text-anchor="middle" font-size="11" fill="#333">Identifies food item(s)</text>
+  <text x="490" y="526" text-anchor="middle" font-size="11" fill="#333">present in the meal image</text>
+  <text x="490" y="547" text-anchor="middle" font-size="10.5" font-style="italic" fill="#7A4560">Only branch in the baseline model</text>
+
+  <!-- Row 4: Fixed average calorie lookup -->
+  <rect x="370" y="638" width="240" height="130" rx="10" fill="#FCE4D6" stroke="#C55A11" stroke-width="2" filter="url(#sh)"/>
+  <text x="490" y="668" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#833C0C">Fixed Average Calorie</text>
+  <text x="490" y="686" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#833C0C">Lookup</text>
+  <text x="490" y="708" text-anchor="middle" font-size="11" fill="#333">One average kcal value</text>
+  <text x="490" y="724" text-anchor="middle" font-size="11" fill="#333">per predicted food class</text>
+  <text x="490" y="746" text-anchor="middle" font-size="10.5" font-style="italic" fill="#833C0C">No portion-size adjustment applied</text>
+
+  <!-- Grey note box aligned with the "no portion" note above, explaining the calorie consequence -->
+  <rect x="40" y="638" width="240" height="130" rx="10" fill="#F2F2F2" stroke="#9E9E9E" stroke-width="1.5" stroke-dasharray="7,4"/>
+  <text x="160" y="674" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#6E6E6E">Same Value Regardless</text>
+  <text x="160" y="692" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#6E6E6E">of Plate Size</text>
+  <text x="160" y="716" text-anchor="middle" font-size="10.5" fill="#7A7A7A">A small and a large serving</text>
+  <text x="160" y="732" text-anchor="middle" font-size="10.5" fill="#7A7A7A">of the same dish receive</text>
+  <text x="160" y="748" text-anchor="middle" font-size="10.5" fill="#7A7A7A">the identical kcal estimate</text>
+
+  <!-- Row 5: Output -->
+  <rect x="330" y="806" width="320" height="78" rx="10" fill="#E7E7E7" stroke="#5B5B5B" stroke-width="2" filter="url(#sh)"/>
+  <g transform="translate(350,824)">
+    <rect x="0" y="0" width="46" height="34" rx="3" fill="#FFFFFF" stroke="#5B5B5B" stroke-width="2"/>
+    <rect x="18" y="34" width="10" height="8" fill="#5B5B5B"/>
+    <rect x="9" y="42" width="28" height="4" rx="2" fill="#5B5B5B"/>
+    <path d="M5 7 L14 20 L21 13 L30 23 L41 9" fill="none" stroke="#C1502E" stroke-width="2.2"/>
+  </g>
+  <text x="530" y="838" text-anchor="middle" font-size="14" font-weight="bold" fill="#3B3B3B">Output</text>
+  <text x="530" y="857" text-anchor="middle" font-size="11" fill="#333">Identified dish name(s) +</text>
+  <text x="530" y="873" text-anchor="middle" font-size="11" fill="#333">fixed average calorie value</text>
+
+  <!-- ===== Orthogonal arrows, mid-to-mid ===== -->
+  <line x1="490" y1="228" x2="490" y2="250" stroke="#37474F" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="280" y1="312" x2="368" y2="312" stroke="#37474F" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="490" y1="372" x2="490" y2="438" stroke="#37474F" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="490" y1="570" x2="490" y2="636" stroke="#37474F" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="490" y1="768" x2="490" y2="804" stroke="#37474F" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- Comparison footnote strip -->
+  <rect x="40" y="806" width="270" height="78" rx="10" fill="#EFEFEF" stroke="#9E9E9E" stroke-width="1.3" stroke-dasharray="6,3"/>
+  <text x="175" y="832" text-anchor="middle" font-size="11" font-weight="bold" fill="#555">Fair-Comparison Control</text>
+  <text x="175" y="852" text-anchor="middle" font-size="10" fill="#666">Same dataset, same folds,</text>
+  <text x="175" y="868" text-anchor="middle" font-size="10" fill="#666">same train/val/test procedure</text>
+
+  <text x="490" y="896" text-anchor="middle" font-size="10.5" font-style="italic" fill="#666">Fig. 2 &#8212; Baseline pipeline: a single-head ResNet-50 classifier with fixed-value calorie lookup, evaluated under the same conditions as the proposed model for a fair comparison.</text>
+</svg>
