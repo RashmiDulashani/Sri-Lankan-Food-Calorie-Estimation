@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| **Module** | IT41043 — Intelligent Systems, Horizon Campus |
+| **Module** | IT41043 - Intelligent Systems, Horizon Campus |
 | **Team** | G. Rashmi Dulashani (ITBIN-2313-0031) & H.M. Imashi Dilshani (ITBIN-2313-0025) |
 | **Module Leader** | Mr. Isuru Madusanka Samarappulige |
 
@@ -23,11 +23,11 @@ dataset or model has been tested against this specific challenge.
 
 | Milestone | Status | Notes |
 |---|---|---|
-| M1 — Research Proposal | ✅ Complete | Gap, Question, and Scope Approved |
-| M2 — Methodology & Data Description | 🔄 In progress | This Repository reflects Current M2 State |
+| M1 - Research Proposal | ✅ Complete | Gap, Question, and Scope Approved |
+| M2 - Methodology & Data Description | 🔄 In progress | This Repository reflects Current M2 State |
 | Data Collection | 🔄 In progress | Target: ~3,000–4,000 Images, 18–20 Dish Classes |
-| M3 — Implementation | ⬜ Not Started | |
-| M4 — Training & Evaluation | ⬜ Not Started | |
+| M3 - Implementation | ⬜ Not Started | |
+| M4 - Training & Evaluation | ⬜ Not Started | |
 
 ## 📁 Project Structure
 ```
@@ -79,19 +79,19 @@ This applies, in order:
    scale using a reference object placed beside the plate, for later portion estimation
 
 ## 🗂️ Dataset
-- **Source:** locally photographed Sri Lankan meals (canteens, home kitchens),
+- **Source:** Locally photographed Sri Lankan meals (canteens, home kitchens),
   supplemented by the public Roboflow "SriLankanFoods" set for validation only
 - **Target size:** ~3,000 - 4,000 images across 18 - 20 dish classes
-- **Labels:** multi-label per image (a single plate can contain several dishes)
-- **Ethics:** no personally identifiable information collected; consent obtained
+- **Labels:** Multi-label per image (a single plate can contain several dishes)
+- **Ethics:** No personally identifiable information collected; consent obtained
   from staff/hosts before photographing meals; see Section 1.3 of the Milestone 2 report
 
 ## 🧠 Model Overview
 Two-headed architecture on a shared EfficientNet-B0 backbone:
-- **Classification head** - multi-label, sigmoid activation, identifies dish(es) on the plate
-- **Portion estimation head** - segments food regions and estimates portion size
+- **Classification head** - Multi-label, sigmoid activation, identifies dish(es) on the plate
+- **Portion estimation head** - Segments food regions and estimates portion size
   using the reference-object calibration from preprocessing
-- **Calorie fusion module** - rule-based combination of predicted class(es),
+- **Calorie fusion module** - Rule-based combination of predicted class(es),
   portion size, and a nutrition reference table to produce the final calorie estimate
 
 Compared against a **ResNet-50 baseline** (single classification head, fixed
