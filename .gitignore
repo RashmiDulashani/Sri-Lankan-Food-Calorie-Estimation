@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+venv/
+env/
+.env
+
+# Data (raw/processed images can be large — keep them out of git history)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Model checkpoints (added in later milestones)
+*.pt
+*.pth
+*.h5
+*.onnx
+
+# OS / editor junk
+.DS_Store
+.vscode/
+.idea/
