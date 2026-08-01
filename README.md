@@ -94,6 +94,8 @@ Two-headed architecture on a shared EfficientNet-B0 backbone:
 - **Calorie fusion module** - Rule-based combination of predicted class(es),
   portion size, and a nutrition reference table to produce the final calorie estimate
 
+  ![System Architecture Diagram](docs/architecture_diagram.svg)
+
 Compared against a **ResNet-50 baseline** (single classification head, fixed
 average calorie value per class, no portion adjustment) trained and evaluated
 under identical conditions.
