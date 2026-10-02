@@ -22,3 +22,11 @@ data/processed/*
 .DS_Store
 .vscode/
 .idea/
+
+# Virtual environment
+.venv/
+
+# Large archives
+*.zip
+*.rar
+*.7z
