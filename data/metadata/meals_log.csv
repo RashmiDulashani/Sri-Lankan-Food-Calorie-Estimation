@@ -1,0 +1,7 @@
+meal_id,date,collector,location,reference_object,labels,total_weight_g,notes
+M0001,2026-09-22,Rashmi,home,aruco_5cm,rice,,red_rice
+M0002,2026-09-22,Rashmi,home,aruco_5cm,chicken_curry,,
+M0003,2026-09-22,Rashmi,home,aruco_5cm,pol_sambol,,
+M0004,2026-09-22,Rashmi,home,aruco_5cm,pol_sambol,,
+M0005,2026-09-22,Rashmi,home,aruco_5cm,rice;pol_sambol,,red_rice
+M0006,2026-09-22,Rashmi,home,aruco_5cm,rice;chicken_curry;pol_sambol,,red_rice
