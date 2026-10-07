@@ -1,7 +1,7 @@
-"""Train the ResNet-50 baseline (frozen backbone + new last layer) on plate-level CV folds.
+"""Train a frozen-backbone classifier (ResNet-50 or EfficientNet-B0) on plate-level CV folds.
 
 Run from the repository root, for example on Google Colab:
-    python -m src.training.train_resnet50 --photo-dir /content/data/photos --meta-dir /content/data/metadata
+    python -m src.training.train --model efficientnet_b0 --photo-dir /content/data/photos --meta-dir /content/data/metadata
 """
 
 import argparse
@@ -11,21 +11,35 @@ import pandas as pd
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-from torchvision.models import resnet50, ResNet50_Weights
+from torchvision.models import (
+    EfficientNet_B0_Weights,
+    ResNet50_Weights,
+    efficientnet_b0,
+    resnet50,
+)
 
 from src.data.dataset import FoodDataset, get_transforms, load_table
 
 
-def build_model(num_classes, device):
-    model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V2)
-    for p in model.parameters():
-        p.requires_grad = False                                   # freeze pretrained layers
-    model.fc = nn.Linear(model.fc.in_features, num_classes)       # new trainable last layer
+def build_model(name, num_classes, device):
+    """Pretrained backbone (frozen) + a new trainable last layer."""
+    if name == "resnet50":
+        model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V2)
+        for p in model.parameters():
+            p.requires_grad = False
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
+    elif name == "efficientnet_b0":
+        model = efficientnet_b0(weights=EfficientNet_B0_Weights.IMAGENET1K_V1)
+        for p in model.parameters():
+            p.requires_grad = False
+        model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
+    else:
+        raise ValueError(f"unknown model: {name}")
     return model.to(device)
 
 
 def run_epoch(model, loader, criterion, optimizer, device, train):
-    model.eval()  # backbone is frozen, so keep BatchNorm fixed
+    model.eval()  # backbone is frozen, so keep BatchNorm / Dropout fixed
     total, count = 0.0, 0
     for x, y in loader:
         x, y = x.to(device), y.to(device)
@@ -50,7 +64,8 @@ def predict(model, loader, device):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Train ResNet-50 baseline on all CV folds.")
+    parser = argparse.ArgumentParser(description="Train a model on all CV folds.")
+    parser.add_argument("--model", choices=["resnet50", "efficientnet_b0"], default="resnet50")
     parser.add_argument("--photo-dir", required=True)
     parser.add_argument("--meta-dir", required=True)
     parser.add_argument("--out-dir", default="results/metrics")
@@ -61,7 +76,7 @@ def main():
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    print("device:", device)
+    print("device:", device, "| model:", args.model)
 
     data, class_names = load_table(args.meta_dir)
     out_dir = Path(args.out_dir)
@@ -81,9 +96,15 @@ def main():
             FoodDataset(val_table, class_names, args.photo_dir, get_transforms(False)),
             batch_size=args.batch_size, shuffle=False)
 
-        model = build_model(len(class_names), device)
+        model = build_model(args.model, len(class_names), device)
+        trainable = [p for p in model.parameters() if p.requires_grad]
         criterion = nn.BCEWithLogitsLoss()
-        optimizer = torch.optim.Adam(model.fc.parameters(), lr=args.lr)
+        optimizer = torch.optim.Adam(trainable, lr=args.lr)
+
+        if fold == 0:
+            n_train = sum(p.numel() for p in trainable)
+            n_all = sum(p.numel() for p in model.parameters())
+            print(f"trainable parameters: {n_train:,} of {n_all:,}")
 
         print(f"\nfold {fold}: train photos {len(train_table)}, val photos {len(val_table)}")
         for epoch in range(1, args.epochs + 1):
@@ -101,8 +122,8 @@ def main():
             frame[f"prob_{c}"] = probs[:, j].round(4)
         pred_frames.append(frame)
 
-    pd.DataFrame(log_rows).to_csv(out_dir / "resnet50_training_log.csv", index=False)
-    pd.concat(pred_frames).to_csv(out_dir / "resnet50_predictions.csv", index=False)
+    pd.DataFrame(log_rows).to_csv(out_dir / f"{args.model}_training_log.csv", index=False)
+    pd.concat(pred_frames).to_csv(out_dir / f"{args.model}_predictions.csv", index=False)
     print("\nSaved to", out_dir)
 
 
